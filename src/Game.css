@@ -1,0 +1,24 @@
+.cell {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.snake.cell {
+    background: green;
+    
+}
+.food.cell {
+    background: red;
+}
+
+.game {
+    border: 1px solid black;
+    height: 250px;
+    width: 250px;
+}
+
+.row {
+    height: 10px;
+}
