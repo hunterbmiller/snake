@@ -10,13 +10,12 @@ const WIDTH = 25;
 const HEIGHT = 25;
 
 export default function Game() {
-
   const direction = useDirection();
   const { snake, food } = useSnake(direction);
 
   function Cell({ isSnake, isFood }) {
     return(
-      <div className={`cell ${isSnake ? 'snake' : ''} ${isFood ? 'food' : ''}`}></div>
+    <div className={`cell ${isSnake ? 'snake' : ''} ${isFood ? 'food' : ''}`}></div>
     )
   }
 
@@ -36,7 +35,7 @@ export default function Game() {
   }
 
   let rows = []
-  for(let i = HEIGHT; i > 0; i--) {
+  for(let i = HEIGHT - 1; i >= 0; i--) {
     rows.push(<Row row={i} key={i} />)
   }
 
@@ -51,13 +50,13 @@ export default function Game() {
 
 function moveSegment(segment, direction) {
   if(direction === MOVE_LEFT) {
-    return [segment[0] - 1 < 0 ? WIDTH : segment[0] - 1, segment[1]];
+    return [segment[0] - 1 < 0 ? WIDTH - 1 : segment[0] - 1, segment[1]];
   } else if(direction === MOVE_RIGHT) {
-    return [segment[0] + 1 > WIDTH ? 0 : segment[0] + 1, segment[1]];
+    return [segment[0] + 1 > WIDTH - 1 ? 0 : segment[0] + 1, segment[1]];
   } else if(direction === MOVE_UP) {
-    return [segment[0], segment[1] + 1 > HEIGHT ? 0 : segment[1] + 1];
+    return [segment[0], segment[1] + 1 > HEIGHT - 1 ? 0 : segment[1] + 1];
   } else if(direction === MOVE_DOWN) {
-    return [segment[0], segment[1] - 1 < 0 ? HEIGHT : segment[1] - 1];
+    return [segment[0], segment[1] - 1 < 0 ? HEIGHT - 1 : segment[1] - 1];
   } else {
     return [...segment];
   }
